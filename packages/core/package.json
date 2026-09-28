@@ -1,0 +1,23 @@
+{
+  "name": "@jev-character/core",
+  "version": "0.1.0-alpha.5",
+  "description": "Portable character state and turn orchestration for host-owned environments.",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/api.js",
+  "types": "./dist/api.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "zod": "^4.1.0"
+  }
+}

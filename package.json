@@ -1,0 +1,46 @@
+{
+  "name": "jev-neighborhood",
+  "version": "0.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "build:core": "tsc -p packages/core/tsconfig.build.json",
+    "pack:core": "npm run build:core && mkdir -p artifacts/core && npm pack ./packages/core --pack-destination artifacts/core",
+    "test:core-package": "node scripts/check-core-package.mjs",
+    "test": "vitest run --exclude 'artifacts/**'",
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "test:survival": "tsx scripts/survival-playthrough.ts",
+    "eval:characters": "tsx scripts/evaluate-characters.ts",
+    "eval:motivation": "tsx scripts/evaluate-motivation.ts",
+    "lab:characters": "tsx scripts/character-lab.ts",
+    "eval:release": "tsx scripts/evaluate-release.ts",
+    "eval:autonomy": "tsx scripts/evaluate-autonomy.ts",
+    "test:browser": "tsx scripts/browser-smoke.ts",
+    "test:browser:isolated": "node scripts/check-browser.mjs",
+    "eval:report": "tsx scripts/report-release.ts",
+    "eval:interactions": "tsx scripts/evaluate-interactions.ts",
+    "test:research-tools": "node --test scripts/research-tools/*.node-test.mjs",
+    "eval:controlled": "tsx scripts/evaluate-controlled-characters.ts"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0",
+    "express": "^5.1.0",
+    "dotenv": "^17.2.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "tsx": "^4.20.0",
+    "vitest": "^3.2.0",
+    "@playwright/test": "^1.55.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

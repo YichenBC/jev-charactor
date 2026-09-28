@@ -1,0 +1,37 @@
+name: Verify
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run test:research-tools
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser:isolated
+      - run: npm run test:core-package
+      - run: npm run lab:characters
+      - run: npm run test:survival
+      - run: npm run eval:release -- --suite all --dry-run
+      - run: npm run eval:release -- --provider rules --suite all --max-requests 48
+      - run: npm run eval:release -- --provider utility --suite all --max-requests 48
+      - run: npm run eval:autonomy -- --provider rules --seconds 90
+      - name: Preserve isolated browser failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-browser-diagnostics
+          path: artifacts/browser-smoke-*/
+          if-no-files-found: ignore
+          retention-days: 3

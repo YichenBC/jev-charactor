@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-09-28T12:37:57.741Z",
+  "method": "scripts/capture-readme.ts",
+  "mode": "actual offline rules",
+  "setup": "Disposable browser/save; staged player and Mei positions; NPC cooldowns delayed for map framing.",
+  "remoteRequests": 0,
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "screenshots": [
+    {
+      "file": "fog-harbor-en.png",
+      "locale": "en",
+      "decisions": []
+    },
+    {
+      "file": "dialogue-en.png",
+      "locale": "en",
+      "decisions": [
+        "rules"
+      ]
+    },
+    {
+      "file": "fog-harbor-zh.png",
+      "locale": "zh",
+      "decisions": []
+    }
+  ]
+}
